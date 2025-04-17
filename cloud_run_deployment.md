@@ -49,9 +49,10 @@ gcloud run deploy real-estate-chatbot \
   --image gcr.io/YOUR_PROJECT_ID/real-estate-chatbot:latest \
   --platform managed \
   --allow-unauthenticated \
-  --region us-central1 \
-  --port 8002
+  --region us-central1
 ```
+
+Note: Cloud Run automatically sets PORT=8080, and our application is configured to use this port.
 
 ### 6. Access Your Deployed Service
 
@@ -72,7 +73,6 @@ gcloud run deploy real-estate-chatbot \
   --platform managed \
   --allow-unauthenticated \
   --region us-central1 \
-  --port 8002 \
   --set-env-vars="GEMINI_API_KEY=your_api_key"
 ```
 

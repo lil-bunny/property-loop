@@ -417,8 +417,15 @@ async def image_upload_info():
         "how_to_encode": "You can encode an image to base64 in JavaScript with: btoa(binaryString) or in Python with: import base64; base64.b64encode(image_bytes).decode('utf-8')"
     }
 
+@app.get("/health")
+async def health_check():
+    """Health check endpoint for Cloud Run"""
+    return {"status": "healthy", "message": "API is running"}
+
 if __name__ == "__main__":
     # Get port from environment variable for cloud deployment compatibility
-    port = int(os.environ.get("PORT", 8002))
+    # Cloud Run sets PORT=8080 by default
+    port = int(os.environ.get("PORT", 8080))
+    print(f"Starting server on port {port}")
     # Use 0.0.0.0 to listen on all interfaces
     uvicorn.run(app, host="0.0.0.0", port=port) 

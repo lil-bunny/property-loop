@@ -17,8 +17,8 @@ RUN apt-get update && apt-get install -y \
 COPY . .
 
 # Expose the port the app runs on
-EXPOSE 8002
+EXPOSE 8080
 
 # Command to run the API server
-# Use 0.0.0.0 to listen on all interfaces and port 8002 (you can change port if needed)
+# The PORT environment variable will be provided by Cloud Run
 CMD ["python", "api_server.py"] 
