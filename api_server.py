@@ -418,4 +418,7 @@ async def image_upload_info():
     }
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8002) 
+    # Get port from environment variable for cloud deployment compatibility
+    port = int(os.environ.get("PORT", 8002))
+    # Use 0.0.0.0 to listen on all interfaces
+    uvicorn.run(app, host="0.0.0.0", port=port) 
