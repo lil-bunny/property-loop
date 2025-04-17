@@ -5,8 +5,12 @@ WORKDIR /app
 # Copy requirements first for better caching
 COPY requirements.txt .
 
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install dependencies with explicit versions of Google AI packages
+RUN pip install --no-cache-dir -r requirements.txt && \
+    pip install --no-cache-dir google-generativeai==0.8.3 && \
+    pip install --no-cache-dir google-ai-generativelanguage==0.6.10 && \
+    pip install --no-cache-dir google-genai==1.2.0 && \
+    pip list
 
 # Install additional packages needed for python-magic
 RUN apt-get update && apt-get install -y \
